@@ -1,7 +1,7 @@
 package com.flink.assesment.demokotlin.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.flink.assesment.demokotlin.data.testLocationData1
+import com.flink.assesment.demokotlin.data.testLocationDataDto1
 import com.flink.assesment.demokotlin.data.testLocationDataList
 import com.flink.assesment.demokotlin.service.LocationService
 import org.junit.jupiter.api.Test
@@ -33,13 +33,13 @@ class LocationControllerTest(
             post("/location/David/now")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(
-                    objectMapper.writeValueAsString(testLocationData1)
+                    objectMapper.writeValueAsString(testLocationDataDto1)
                 )
         )
             .andExpect(status().isCreated)
 
         // Verify if the service is called with correct params values
-        Mockito.verify(locationService).addLocation("David", testLocationData1)
+        Mockito.verify(locationService).addLocation("David", testLocationDataDto1)
     }
 
     @Test
